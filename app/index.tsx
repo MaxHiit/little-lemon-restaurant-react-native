@@ -1,8 +1,10 @@
 import { StyleSheet, View } from 'react-native';
 
+import CustomButton from '@/components/CustomButton';
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { ThemedText } from '@/components/ThemedText';
+import { router } from 'expo-router';
 
 export default function HomeScreen() {
 	return (
@@ -18,6 +20,7 @@ export default function HomeScreen() {
 					Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in
 					a lively but casual environment. We would love to hear more about your experience with us!
 				</ThemedText>
+				<CustomButton title='View menu' handlePress={() => router.navigate('/menu')} />
 			</View>
 			<View>
 				<Footer />
@@ -32,15 +35,20 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgb(73, 94, 87)'
 	},
 	content: {
-		flex: 1
+		flex: 1,
+		paddingHorizontal: 20
 	},
 	title: {
-		padding: 40,
+		paddingVertical: 40,
 		textAlign: 'center'
 	},
 	text: {
-		padding: 20,
+		paddingVertical: 20,
 		marginVertical: 8,
 		textAlign: 'center'
+	},
+	menu: {
+		color: '#F4CE14',
+		fontSize: 36
 	}
 });

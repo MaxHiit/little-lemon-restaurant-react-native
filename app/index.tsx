@@ -1,60 +1,83 @@
-import { StyleSheet, View } from 'react-native';
+import { Image, ScrollView, StyleSheet, View } from 'react-native';
 
-import CustomButton from '@/components/CustomButton';
-import Footer from '@/components/Footer';
-import Header from '@/components/Header';
 import { ThemedText } from '@/components/ThemedText';
-import { router } from 'expo-router';
 
 export default function HomeScreen() {
 	return (
-		<View style={styles.container}>
-			<View>
-				<Header />
+		<ScrollView style={styles.container}>
+			<Image
+				style={styles.logo}
+				resizeMode='contain'
+				accessibilityLabel='Little lemon Logo'
+				source={require('@/assets/images/little-lemon-logo.png')}
+			/>
+			<ThemedText type='default' style={styles.title}>
+				Little Lemon, your local Mediterranean Bistro
+			</ThemedText>
+
+			<View style={styles.imageWrapper}>
+				<Image
+					style={styles.image}
+					resizeMode='cover'
+					accessibilityLabel='Food Picture 1'
+					source={require('@/assets/images/picture-1.png')}
+				/>
+				<Image
+					style={styles.image}
+					resizeMode='cover'
+					accessibilityLabel='Food Picture 2'
+					source={require('@/assets/images/picture-2.png')}
+				/>
+				<Image
+					style={styles.image}
+					resizeMode='cover'
+					accessibilityLabel='Food Picture 3'
+					source={require('@/assets/images/picture-3.png')}
+				/>
+				<Image
+					style={styles.image}
+					resizeMode='cover'
+					accessibilityLabel='Food Picture 4'
+					source={require('@/assets/images/picture-4.png')}
+				/>
 			</View>
-			<View style={styles.content}>
-				<ThemedText type='title' style={styles.title}>
-					Welcome to Little Lemon
-				</ThemedText>
-				<ThemedText type='default' style={styles.text}>
-					Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in
-					a lively but casual environment. We would love to hear more about your experience with us!
-				</ThemedText>
-				<View style={styles.linkWrapper}>
-					<CustomButton title='view menu' handlePress={() => router.navigate('/menu')} />
-					<CustomButton title='leave a feedback' handlePress={() => router.navigate('/feedback')} />
-				</View>
-			</View>
-			<View>
-				<Footer />
-			</View>
-		</View>
+			{/* <View style={styles.linkWrapper}>
+				<CustomButton title='view menu' handlePress={() => router.navigate('/menu')} />
+				<CustomButton title='leave a feedback' handlePress={() => router.navigate('/feedback')} />
+			</View> */}
+		</ScrollView>
 	);
 }
 
 const styles = StyleSheet.create({
 	container: {
 		flex: 1,
-		backgroundColor: 'rgb(73, 94, 87)'
-	},
-	content: {
-		flex: 1,
-		paddingHorizontal: 20
+		padding: 24,
+		backgroundColor: '#fff'
 	},
 	title: {
-		paddingVertical: 40,
-		textAlign: 'center'
+		marginTop: 16,
+		paddingVertical: 10,
+		color: '#333333',
+		textAlign: 'center',
+		fontSize: 20,
+		fontWeight: 'bold'
 	},
-	text: {
-		paddingVertical: 20,
-		marginVertical: 8,
-		textAlign: 'center'
+	logo: {
+		height: 100,
+		width: '100%'
 	},
-	menu: {
-		color: '#F4CE14',
-		fontSize: 36
+	image: {
+		width: '100%',
+		height: 250,
+		borderRadius: 10
+	},
+	imageWrapper: {
+		gap: 20,
+		marginTop: 20
 	},
 	linkWrapper: {
-		gap: 20
+		gap: 20,
+		marginTop: 20
 	}
 });

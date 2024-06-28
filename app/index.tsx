@@ -20,7 +20,10 @@ export default function HomeScreen() {
 					Little Lemon is a charming neighborhood bistro that serves simple food and classic cocktails in
 					a lively but casual environment. We would love to hear more about your experience with us!
 				</ThemedText>
-				<CustomButton title='View menu' handlePress={() => router.navigate('/menu')} />
+				<View style={styles.linkWrapper}>
+					<CustomButton title='view menu' handlePress={() => router.navigate('/menu')} />
+					<CustomButton title='leave a feedback' handlePress={() => router.navigate('/feedback')} />
+				</View>
 			</View>
 			<View>
 				<Footer />
@@ -50,5 +53,8 @@ const styles = StyleSheet.create({
 	menu: {
 		color: '#F4CE14',
 		fontSize: 36
+	},
+	linkWrapper: {
+		gap: 20
 	}
 });

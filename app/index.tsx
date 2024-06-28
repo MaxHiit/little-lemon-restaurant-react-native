@@ -1,51 +1,29 @@
-import { Image, ScrollView, StyleSheet, View } from 'react-native';
-
 import { ThemedText } from '@/components/ThemedText';
+import { router } from 'expo-router';
+import { Image, Pressable, StyleSheet, View } from 'react-native';
 
 export default function HomeScreen() {
 	return (
-		<ScrollView style={styles.container}>
-			<Image
-				style={styles.logo}
-				resizeMode='contain'
-				accessibilityLabel='Little lemon Logo'
-				source={require('@/assets/images/little-lemon-logo.png')}
-			/>
-			<ThemedText type='default' style={styles.title}>
-				Little Lemon, your local Mediterranean Bistro
-			</ThemedText>
-
-			<View style={styles.imageWrapper}>
+		<View style={styles.container}>
+			<View style={styles.innerContainer}>
 				<Image
-					style={styles.image}
-					resizeMode='cover'
-					accessibilityLabel='Food Picture 1'
-					source={require('@/assets/images/picture-1.png')}
+					style={styles.logo}
+					resizeMode='contain'
+					accessibilityLabel='Little lemon Logo'
+					source={require('@/assets/images/little-lemon-logo.png')}
 				/>
-				<Image
-					style={styles.image}
-					resizeMode='cover'
-					accessibilityLabel='Food Picture 2'
-					source={require('@/assets/images/picture-2.png')}
-				/>
-				<Image
-					style={styles.image}
-					resizeMode='cover'
-					accessibilityLabel='Food Picture 3'
-					source={require('@/assets/images/picture-3.png')}
-				/>
-				<Image
-					style={styles.image}
-					resizeMode='cover'
-					accessibilityLabel='Food Picture 4'
-					source={require('@/assets/images/picture-4.png')}
-				/>
+				<ThemedText type='title' style={styles.title}>
+					Little Lemon, your local Mediterranean Bistro
+				</ThemedText>
 			</View>
-			{/* <View style={styles.linkWrapper}>
-				<CustomButton title='view menu' handlePress={() => router.navigate('/menu')} />
-				<CustomButton title='leave a feedback' handlePress={() => router.navigate('/feedback')} />
-			</View> */}
-		</ScrollView>
+			<View style={styles.buttonWrapper}>
+				<Pressable style={styles.button} onPress={() => router.push('/subscribe')}>
+					<ThemedText style={styles.buttonText} type='link'>
+						Newsletter
+					</ThemedText>
+				</Pressable>
+			</View>
+		</View>
 	);
 }
 
@@ -53,7 +31,13 @@ const styles = StyleSheet.create({
 	container: {
 		flex: 1,
 		padding: 24,
-		backgroundColor: '#fff'
+		backgroundColor: '#fff',
+		alignItems: 'center'
+	},
+	innerContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		gap: 20
 	},
 	title: {
 		marginTop: 16,
@@ -64,20 +48,20 @@ const styles = StyleSheet.create({
 		fontWeight: 'bold'
 	},
 	logo: {
-		height: 100,
+		height: 200,
 		width: '100%'
 	},
-	image: {
-		width: '100%',
-		height: 250,
-		borderRadius: 10
+	buttonWrapper: {
+		marginTop: 'auto',
+		width: '100%'
 	},
-	imageWrapper: {
-		gap: 20,
-		marginTop: 20
+	button: {
+		backgroundColor: '#3e524b',
+		borderRadius: 6,
+		padding: 5
 	},
-	linkWrapper: {
-		gap: 20,
-		marginTop: 20
+	buttonText: {
+		textAlign: 'center',
+		color: '#fff'
 	}
 });

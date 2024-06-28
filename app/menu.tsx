@@ -1,7 +1,8 @@
 import Footer from '@/components/Footer';
 import Header from '@/components/Header';
 import { ThemedText } from '@/components/ThemedText';
-import { FlatList, StyleSheet, View } from 'react-native';
+import { useState } from 'react';
+import { FlatList, Pressable, StyleSheet, View } from 'react-native';
 
 type ItemType = {
 	name: string;
@@ -33,11 +34,6 @@ const MENU_ITEMS: ItemType[] = [
 	{ name: 'Panna Cotta', price: '$5.00', id: '21V' }
 ];
 
-const HeaderList = () => (
-	<ThemedText type='title' style={styles.title}>
-		View Menu
-	</ThemedText>
-);
 const Item = ({ item }: { item: ItemType }) => {
 	const { name, price } = item;
 
@@ -50,6 +46,7 @@ const Item = ({ item }: { item: ItemType }) => {
 };
 
 export default function MenuScreen() {
+	const [showMenu, setShowMenu] = useState(false);
 	const renderItem = ({ item }: { item: ItemType }) => <Item item={item} />;
 
 	return (
@@ -58,13 +55,22 @@ export default function MenuScreen() {
 				<Header />
 			</View>
 			<View style={styles.content}>
-				<FlatList
-					data={MENU_ITEMS}
-					keyExtractor={(item) => item.id}
-					renderItem={renderItem}
-					ListHeaderComponent={HeaderList}
-					ListFooterComponent={Footer}
-				/>
+				<ThemedText style={styles.infoSection}>
+					Lorem ipsum dolor sit amet consectetur adipisicing elit. Ex quae illum voluptate officiis velit
+					expedita, id facere corrupti at illo, ipsum ut asperiores rem, tenetur vel. Adipisci iure
+				</ThemedText>
+				<Pressable style={styles.button} onPress={() => setShowMenu(!showMenu)}>
+					<ThemedText style={styles.buttonText}>View Menu</ThemedText>
+				</Pressable>
+				{showMenu && (
+					<FlatList
+						data={MENU_ITEMS}
+						keyExtractor={(item) => item.id}
+						renderItem={renderItem}
+						ListFooterComponent={Footer}
+						style={styles.listWrapper}
+					/>
+				)}
 			</View>
 		</View>
 	);
@@ -76,11 +82,27 @@ const styles = StyleSheet.create({
 		backgroundColor: 'rgb(73, 94, 87)'
 	},
 	content: {
-		flex: 1
+		flex: 1,
+		alignItems: 'center'
 	},
-	title: {
-		padding: 20,
+	infoSection: {
+		textAlign: 'center',
+		padding: 20
+	},
+	button: {
+		padding: 10,
+		paddingHorizontal: 40,
+		marginVertical: 8,
+		margin: 40,
+		backgroundColor: '#EDEFEE',
+		borderRadius: 12
+	},
+	buttonText: {
+		color: '#333333',
 		textAlign: 'center'
+	},
+	listWrapper: {
+		width: '100%'
 	},
 	innerContainer: {
 		paddingHorizontal: 40,
